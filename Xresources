@@ -1,0 +1,32 @@
+Xft.dpi: 160.0
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+rofi.opacity: 98
+rofi.width: 50
+rofi.lines: 10
+rofi.columns: 1
+rofi.font: Fira Code 10
+rofi.fg: #c0c0c0
+rofi.bg: #2b2b2b
+rofi.hlfg: #ffffff
+rofi.hlbg: #ff7030
+rofi.bc: #ff7030
+rofi.bw: 2
+rofi.loc: 0
+rofi.padding: 2
+rofi.yoffset: -4
+rofi.xoffset: 0
+rofi.fixed-num-lines: false
+rofi.hmode: false
+rofi.terminal: x-terminal-emulator
+rofi.ssh-set-title: true
+rofi.rkey: mod1+F2
+rofi.skey: mod1+F3
+URxvt.font: xft:DejaVu Sans Mono:size=10
+URxvt.scrollBar: false
+Xcursor.theme: whiteglass
+Xcursor.size: 24

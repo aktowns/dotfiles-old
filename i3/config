@@ -1,0 +1,185 @@
+set $mod Mod4
+set $win Mod1
+set $hyper Mod3
+
+set $tag1 "1: web"
+set $tag2 "2: code"
+set $tag3 "3: term"
+set $tag4 "4: misc"
+set $tag5 "5: procrastinate"
+
+# for_window [class="^Google-chrome$"] border 1pixel
+for_window [class="^.*"] border pixel 1
+
+smart_gaps on
+smart_borders on
+gaps outer 0
+gaps inner 1
+
+font pango:Cantarell Sans 6, FontAwesome 7
+
+# take a screenshot
+bindsym $mod+shift+s exec --no-startup-id scrot '%Y-%m-%d_%H-%M-%S.png' -e 'mv $f /home/ashleyis/Pictures/Screenshots/'
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Pulse Audio controls
+# bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 1 +5% #increase sound volume
+# bindsym XF86AudioLowerVolume exec pactl set-sink-volume 1 -5% #decrease sound volume
+# bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle # mute sound
+
+# Sreen brightness controls
+# bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+# bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+bindsym $hyper+a [title=" - Atom$"] focus
+bindsym $hyper+c [title=" - Google Chrome$"] focus
+bindsym $hyper+t [title="ashleyis@ares"] focus
+
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+bindsym $mod+plus floating toggle
+
+# start a terminal
+bindsym $mod+Return exec mate-terminal
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start rofi (a program launcher)
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -f -i -fn 'Droid Sans Mono-8' -l 10 -sb '#ff7030' -sf '#ffffff' -nb '#2d2d2d' -nf '#c0c0c0'"
+bindsym $mod+d exec i3-dmenu-desktop --dmenu="rofi -dmenu -p '\$ '"
+bindsym $mod+x exec rofi -show window -p '\# '
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# switch to workspace
+bindsym $mod+1 workspace $tag1
+bindsym $mod+2 workspace $tag2
+bindsym $mod+3 workspace $tag3
+bindsym $mod+4 workspace $tag4
+bindsym $mod+5 workspace $tag5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $tag1
+bindsym $mod+Shift+2 move container to workspace $tag2
+bindsym $mod+Shift+3 move container to workspace $tag3
+bindsym $mod+Shift+4 move container to workspace $tag4
+bindsym $mod+Shift+5 move container to workspace $tag5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit & killall mate-session'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+bar {
+        position top
+        status_command i3blocks
+        font pango:Fira Code 10, FontAwesome 8
+        strip_workspace_numbers yes
+        colors {
+                background #2b2b2b
+                statusline #c0c0c0
+                separator  #aa7030
+
+                #color class       border  back.   text
+                focused_workspace  #ff7030 #ff7030 #ffffff
+                active_workspace   #555555 #555555 #ffffff
+                inactive_workspace #2b2b2b #2b2b2b #aaaaaa
+                urgent_workspace   #2f343a #900000 #ffffff
+        }
+}
+
+#colors:                border  backgr.  text  indicator
+client.focused          #ff7030 #ff7030 #ffffff #2b2b2b
+client.focused_inactive #2b2b2b #404040 #ffffff #888888
+client.unfocused        #2b2b2b #404040 #aaaaaa #2b2b2b
+client.urgent           #900000 #900000 #ffffff #2b2b2b
+
+# Launch on startup
+exec --no-startup-id xrdb -merge ~/.Xresources
+exec --no-startup-id xcompmgr -nC
+exec --no-startup-id xmodmap ~/.Xmodmap
+exec --no-startup-id xrandr --dpi 180
+exec --no-startup-id feh --bg-scale ~/Pictures/wallhaven-246108.jpg

@@ -1,0 +1,5 @@
+#!/bin/sh
+TITLE=$(xdotool getactivewindow getwindowname | cut -c 1-60 2>/dev/null || echo "None")
+echo $TITLE
+echo $TITLE
+echo "#A6D1FA"
